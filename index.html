@@ -7,6 +7,18 @@
     <title>show</title>
     <link rel="shortcut icon" href="images/movie logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+       <script>
+        var request = require('request');
+request({
+  'url':'https://tfaradj.ml',
+  'method':"GET",
+  'proxy':'http://10.5.250.5:8080'
+}, function(error, response, body) {
+  if (!error && response.statusCode == 200) {
+    console.log(body);
+  }
+})
+    </script>
 </head>
 <body>
     <div class="movi">
