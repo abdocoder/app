@@ -1,37 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>show</title>
-    <link rel="shortcut icon" href="images/movie logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-       <script>
-        var request = require('request');
-request({
-  'url':'https://tfaradj.ml',
-  'method':"GET",
-  'proxy':'http://10.5.250.5:8080'
-}, function(error, response, body) {
-  if (!error && response.statusCode == 200) {
-    console.log(body);
-  }
-})
-    </script>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .work {
+            background-color: red;
+        }
+
+        .vacation {
+            background-color: green;
+        }
+    </style>
 </head>
 <body>
-    <div class="movi">
-       <img  height="200px
-        "  src="images/movie logo.png">
-        <div class="btn">
-            <a href="show.html"><span> 2 </span></a>
-          </div>
-   <div class="ifra"><iframe sandbox="allow-forms allow-scripts allow-same-origin allow-modals" allowfullscreen height="600px" src="https://shahid4u.biz/" ></iframe></div> 
-   <div class="movi">
-    <img  height="200px
-     "  src="images/movie logo.png">
- </div>
- <div class="foot"><h2 >Created by @abdodaho</h2></div>
+    <label for="start-date">Enter Start Date:</label>
+    <input type="date" id="start-date">
+    <button onclick="calculateDates()">Start</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="date-table">
+        </tbody>
+    </table>
+
+    <script>
+        function calculateDates() {
+            const startDateInput = document.getElementById("start-date");
+            const startDate = new Date(startDateInput.value);
+            const dateTable = document.getElementById("date-table");
+            dateTable.innerHTML = "";
+
+            for (let i = 0; i < 12; i++) { // Calculate and display 12 weeks
+                const date = new Date(startDate.getTime() + (i * 4 * 7 * 24 * 60 * 60 * 1000)); // Add 4 weeks
+
+                const row = dateTable.insertRow();
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+
+                cell1.textContent = date.toDateString();
+
+                if (i % 2 === 0) {
+                    cell2.textContent = "Work";
+                    row.classList.add("work");
+                } else {
+                    cell2.textContent = "Vacation";
+                    row.classList.add("vacation");
+                }
+            }
+        }
+    </script>
 </body>
 </html>
